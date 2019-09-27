@@ -1,0 +1,17 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: white;
+  font-family: sans-serif;
+}
+
+h1 sub {
+  font-size: 0.38em;
+}
+
+#content {
+  padding: 1.62rem;
+}
