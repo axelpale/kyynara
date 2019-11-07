@@ -1,3 +1,4 @@
+// See https://github.com/GoogleChrome/puppeteer/issues/306
 const puppeteer = require('puppeteer')
 
 const config = {
