@@ -12,6 +12,30 @@ h1 sub {
   font-size: 0.38em;
 }
 
-#content {
+.content {
   padding: 1.62rem;
+}
+
+a.button {
+  display: inline-block;
+  text-align: center;
+  padding: 0.62em 0em;
+  border: 1px solid #0074d9;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  user-select: none;
+  vertical-align: baseline;
+  margin: 0.38em 0;
+  cursor: pointer;
+  border-radius: 0.38em;
+  box-shadow: 0 0 rgba(0,0,0,0) inset;
+  text-decoration: none;
+  background: white;
+  color: #0060c0;
+}
+
+a.button:hover, a.button:active {
+  background: #0074d9;
+  color: white;
 }
