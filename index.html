@@ -4,18 +4,93 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <title>Kyynärä Letku Tammela Suomi</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: white;
+      font-family: sans-serif;
+    }
+
+    h1 sub {
+      font-size: 0.38em;
+    }
+
+    .content {
+      padding: 1.62rem;
+    }
+
+    a.button {
+      display: inline-block;
+      text-align: center;
+      padding: 0.62em 0em;
+      border: 1px solid #0074d9;
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      user-select: none;
+      vertical-align: baseline;
+      margin: 0.38em 0;
+      cursor: pointer;
+      border-radius: 0.38em;
+      box-shadow: 0 0 rgba(0,0,0,0) inset;
+      text-decoration: none;
+      background: white;
+      color: #0060c0;
+    }
+
+    a.button:hover, a.button:active {
+      background: #0074d9;
+      color: white;
+    }
+
+    p.footnote {
+      font-size: 0.8rem;
+      color: #666;
+    }
+    p.footnote a {
+      color: #666;
+    }
+  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>" />
 </head>
 <body>
-  <div id="content" class="content"></div>
-  <script src="dist/bundle.js"></script>
-
-  <div class="content">
-    <h3>Seitsemän päivän ennuste</h3>
-    <script type='text/javascript' src='https://darksky.net/widget/default/60.66881676320874,23.843768925781205/uk12/en.js?width=100%&height=350&title=Kyynäräntie, Tammela&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=uk&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes'></script>
-  </div>
-  <div class="content">
-    <h3>Sateen mahdollisuus</h3>
-    <script type='text/javascript' src='https://darksky.net/widget/graph/60.66831222208924,23.836559147949174/si12/en.js?width=100%&height=320&title=Kyynärä, Tammela&textColor=333333&bgColor=FFFFFF&transparency=false&fontFamily=Default&customFont=&units=si&graph=precip_graph&timeColor=333333&tempColor=333333&lineColor=333333&markerColor=333333'></script>
+  <div id="content" class="content">
+    <h1>
+      Kyynärä
+      <sub>Letku, Tammela, Suomi</sub>
+    </h1>
+    <p>
+      <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste</a><br>
+      <a class="button" href="https://testbed.fmi.fi/?imgtype=radar&amp;t=5&amp;n=15">🌧️ Sadetutka</a><br>
+      <a class="button" href="https://wwwi2.ymparisto.fi/i2/35/l359821001y/wqfi.html">⚓️ Liesjärven vedenkorkeus</a><br>
+      <a class="button" href="http://ilmatieteenlaitos.fi/avaruussaa">🛰️ Avaruussää</a><br>
+    </p>
+    <p>
+      <a class="button" href="https://louna.finna.fi/Content/kirjastoauto_aikataulu">📚 Kirjastoauton aikataulut</a><br>
+      <a class="button" href="https://www.jatskiauto.com/haku/hae?zip=31380">🍨 Jätskiauton aikataulut</a><br>
+      <a class="button" href="https://liput.matkahuolto.fi/connectionlist?departurePlaceId=s11271&arrivalPlaceId=p1317">🚌 Matkahuolto Kyynärä-Forssa</a><br>
+      <a class="button" href="https://liput.matkahuolto.fi/connectionlist?departurePlaceId=s11271&arrivalPlaceId=p1001">🚌 Matkahuolto Kyynärä-Helsinki</a>
+    </p>
+    <p>
+      <a class="button" href="https://retkikartta.fi/?mapId=37091">🏕️ Retkikartta.fi</a><br>
+      <a class="button" href="https://asiointi.maanmittauslaitos.fi/karttapaikka/?lang=fi&n=6729686.283317434&e=327527.7133930692&zoom=9">⛰️ Maastokartta</a><br>
+      <a class="button" href="https://vanhatkartat.fi/#14/60.66543/23.84467">📜 Vanhat kartat</a><br>
+      <a class="button" href="https://kartta.museoverkko.fi/?zoomLevel=9&coord=327677.69583158847_6729805.484890209&mapLayers=17+100+default,133+100+s_1629683825662,142+100+s_1625822858668,136+100+s_1629685777366,145+100+s_1629686990761,139+100+s_1629686211301,161+100+s_1629689845683&showMarker=true&showIntro=false">🏛️ Muinaisjäännökset</a>
+    </p>
+    <p>
+      <a class="button" href="https://fi.wikipedia.org/wiki/Liesj%C3%A4rvi_(Tammelan_Liesj%C3%A4rvi)">📖 Wikipedia Liesjärvi</a><br>
+      <a class="button" href="https://www.luontoon.fi/liesjarvi">🐿️ Luontoon.fi Liesjärven kansallispuisto</a><br>
+      <a class="button" href="https://www.luontoon.fi/korteniemi">🐏 Luontoon.fi Korteniemen perinnetila</a><br>
+      <a class="button" href="https://www.erarenki.fi/">🛶 Erärenki</a><br>
+      <a class="button" href="https://www.kodinpaikka.fi/tietoa-asuinalueista/letku/">🐂 Letkun kylä</a>
+    </p>
+    <p class="footnote">
+      Lista päivitetty 23.7.2024 <a href="https://www.akselipalen.com">A.Palén</a>
+    </p>
   </div>
 </body>
 </html>
