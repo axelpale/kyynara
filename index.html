@@ -24,6 +24,10 @@
       padding: 1.62rem;
     }
 
+    .hidden {
+      visibility: hidden;
+    }
+
     a.button {
       font-size: 1.2rem;
       display: inline-block;
@@ -49,6 +53,11 @@
       color: white;
     }
 
+    p.timestamp {
+      margin-top: -0.8rem;
+      font-weight: bold;
+    }
+
     p.footnote {
       font-size: 0.8rem;
       color: #666;
@@ -58,12 +67,84 @@
     }
   </style>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>" />
+  <script>
+    const getHelsinkiDateTime = function () {
+      // Get a date time components in Helsinki time.
+      const format = new Intl.DateTimeFormat('fi', {
+        timeZone: 'Europe/Helsinki',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: false
+      })
+      const parts = format.formatToParts(new Date())
+      const values = Object.fromEntries(
+        parts.filter(p => p.type !== 'literal').map(p => {
+          return [p.type, Number(p.value)]
+        })
+      )
+      return values
+    }
+
+    const getISOWeek = function (date) {
+      // Compute ISO 8601 week number from a Date.
+      //
+      const d = new Date(date.getTime()) // copy
+      const day = d.getDay() || 7
+      // Thursday decides the year.
+      d.setDate(d.getDate() + 4 - day)
+      // Compute difference to year start in weeks.
+      const yearStart = new Date(d.getFullYear(), 0, 1)
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
+    }
+
+    const getHelsinkiDate = function () {
+      const format = new Intl.DateTimeFormat('fi', {
+        timeZone: 'Europe/Helsinki'
+      })
+      const str = format.format(new Date())
+      return str
+    }
+
+    const getHelsinkiWeekday = function () {
+      const format = new Intl.DateTimeFormat('fi', {
+        timeZone: 'Europe/Helsinki',
+        weekday: 'long'
+      })
+      const str = format.format(new Date())
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    }
+
+    const getPrettyDateTime = function () {
+      // Build a Helsinki date from components.
+      const c = getHelsinkiDateTime()
+
+      const d = new Date(c.year, c.month - 1, c.day)
+      const week = getISOWeek(d)
+
+      const weekday = getHelsinkiWeekday()
+      const date = getHelsinkiDate()
+      // const time = c.hour + ':' + ('' + c.minute).padStart(2, '0')
+
+      return weekday + ' ' + date + ' viikko ' + week
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('timestamp')
+      el.innerHTML = getPrettyDateTime()
+      el.classList.remove('hidden')
+    })
+  </script>
 </head>
 <body>
   <div id="content" class="content">
     <h1>
       Kyynärä
     </h1>
+    <p id="timestamp" class="timestamp hidden"></p>
     <p>
       <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste Letku</a><br>
       <a class="button" href="https://testbed.fmi.fi/?imgtype=radar&amp;t=5&amp;n=15">🌧️ Sadetutka</a><br>
