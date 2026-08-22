@@ -138,13 +138,63 @@
       const date = getHelsinkiDate()
       // const time = c.hour + ':' + ('' + c.minute).padStart(2, '0')
 
-      return weekday + ' ' + date + ' viikko ' + week
+      return weekday + ' ' + date + ', viikko ' + week + '.'
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const el = document.getElementById('timestamp')
-      el.innerHTML = getPrettyDateTime()
-      el.classList.remove('hidden')
+    async function getLocalTemperature () {
+      const url =
+        'https://opendata.fmi.fi/wfs?' +
+        'service=WFS&' +
+        'version=2.0.0&' +
+        'request=getFeature&' +
+        'storedquery_id=fmi::observations::weather::timevaluepair&' +
+        'place=liesjärven%20kansallispuisto&' +
+        'parameters=t2m&' +
+        'maxlocations=1'
+
+      try {
+        const response = await fetch(url)
+        const text = await response.text()
+
+        // FMI returns XML, so parse it.
+        const xml = new DOMParser().parseFromString(text, 'text/xml')
+
+        // Find the temperature value.
+        const values = xml.getElementsByTagNameNS(
+            "http://www.opengis.net/waterml/2.0",
+            "value"
+        );
+
+        if (values.length === 0) {
+          console.warn('No temperature data found.')
+          return ''
+        }
+
+        // Last value = most recent observation
+        const temperature = parseFloat(
+          values[values.length - 1].textContent
+        );
+
+        if (temperature) {
+          return `Lämpötila ${Number(temperature).toFixed(1)} °C.`
+        } else {
+          console.warn('No numerical temperature found.')
+          return ''
+        }
+      } catch (error) {
+        console.error(error)
+        return ''
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const timeEl = document.getElementById('timestamp')
+      timeEl.innerHTML = getPrettyDateTime()
+      timeEl.classList.remove('hidden')
+
+      const tempEl = document.getElementById('temperature')
+      tempEl.innerHTML = await getLocalTemperature()
+      tempEl.classList.remove('hidden') 
     })
   </script>
 </head>
@@ -155,6 +205,7 @@
     </h1>
     <p class="quick-info-row">
       <span id="timestamp" class="timestamp hidden"></span>
+      <span id="temperature" class="temperature hidden"></span>
     </p>
     <p>
       <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste Letku</a><br>
@@ -182,7 +233,8 @@
       <a class="button" href="https://www.kodinpaikka.fi/tietoa-asuinalueista/letku/">🐂 Letkun kylä</a>
     </p>
     <p class="footnote">
-      Lista päivitetty 4.7.2026 <a href="https://www.akselipalen.com">A.Palén</a>
+      Säätiedot <a href="https://www.ilmatieteenlaitos.fi/saa/somero/salkola">Ilmatieteen laitos</a><br>
+      Lista päivitetty 4.7.2026 <a href="https://www.akselipalen.com">A.Palén</a><br>
     </p>
   </div>
 </body>
