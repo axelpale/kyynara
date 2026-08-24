@@ -180,7 +180,11 @@
         );
 
         if (temperature) {
-          return `🌡️ ${Number(temperature).toFixed(1)} °C`
+          const localTemp = temperature.toLocaleString('fi', {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+          })
+          return `🌡️ ${localTemp} °C`
         } else {
           console.warn('No numerical temperature found.')
           return ''
