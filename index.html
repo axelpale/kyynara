@@ -141,20 +141,20 @@
       const time = c.hour + ':' + ('' + c.minute).padStart(2, '0')
 
       return '🗓️ ' + weekday + ' ' + date +
-        ', vk ' + week + '&nbsp; ' +
-        '🕰️ ' + time + '&nbsp; '
+        ', vk ' + week + ' ' +
+        '🕰️ ' + time + ' '
     }
 
     async function getLocalTemperature () {
       const url =
         'https://opendata.fmi.fi/wfs?' +
         'service=WFS&' +
-        'version=2.0.0&' +
+        'version=2.0.2&' +
         'request=getFeature&' +
         'storedquery_id=fmi::observations::weather::timevaluepair&' +
-        'place=liesjärven%20kansallispuisto&' +
-        'parameters=t2m&' +
-        'maxlocations=1'
+        'fmisid=100967&' +
+        'parameters=t2m'
+      // Station IDs: 100967 (Kiikala, Salo), 101104 (Ilmala, Jokioinen)
 
       try {
         const response = await fetch(url)
@@ -243,8 +243,8 @@
       <a class="button" href="https://www.kodinpaikka.fi/tietoa-asuinalueista/letku/">🐂 Letkun kylä</a>
     </p>
     <p class="footnote">
-      Säätiedot <a href="https://www.ilmatieteenlaitos.fi/saa/somero/salkola">Ilmatieteen laitos</a><br>
-      Lista päivitetty 6.9.2026 <a href="https://www.akselipalen.com">A.Palén</a><br>
+      Säätiedot <a href="https://www.ilmatieteenlaitos.fi/saa/tammela/liesj%C3%A4rven%20kansallispuisto">Ilmatieteen laitos</a><br>
+      Lista päivitetty 11.9.2026 <a href="https://www.akselipalen.com">A.Palén</a><br>
     </p>
   </div>
 </body>
