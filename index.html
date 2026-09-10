@@ -154,7 +154,8 @@
         'storedquery_id=fmi::observations::weather::timevaluepair&' +
         'fmisid=100967&' +
         'parameters=t2m'
-      // Station IDs: 100967 (Kiikala, Salo), 101104 (Ilmala, Jokioinen)
+      // Find station IDs: https://www.ilmatieteenlaitos.fi/havaintoasemat
+      // For example: 100967 (Kiikala, Salo), 101104 (Ilmala, Jokioinen)
 
       try {
         const response = await fetch(url)
