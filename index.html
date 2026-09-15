@@ -37,15 +37,15 @@
       visibility: hidden;
     }
 
-    a.button {
+    .button {
       font-size: 1.2rem;
       display: inline-block;
       text-align: center;
-      padding: 0.62rem 0em;
+      padding: 0.62rem 0rem;
       border: 1px solid #0074d9;
       width: 100%;
       max-width: 800px;
-      height: auto;
+      height: 1.6rem;
       user-select: none;
       vertical-align: baseline;
       margin: 0.38rem 0;
@@ -57,9 +57,58 @@
       color: #0060c0;
     }
 
-    a.button:hover, a.button:active {
+    .button:hover, .button:active {
       background: #0074d9;
       color: white;
+    }
+
+    .dropdown-toggle {
+      display: block;
+      position: relative;
+      top: 1.8rem;
+      right: -0.1rem;
+      width: 100%;
+      max-width: 800px;
+      height: 0;
+      line-height: 0;
+      text-align: right;
+      user-select: none;
+      cursor: pointer;
+    }
+    .dropdown-toggle .symbol {
+      color: #0060c0;
+      padding: 1rem;
+    }
+    .dropdown-toggle.dropdown-active .symbol {
+    }
+    .dropdown-toggle .symbol-active {
+      display: none;
+    }
+    .dropdown-toggle.dropdown-active .symbol-active {
+      display: inline;
+    }
+    .dropdown-toggle.dropdown-active .symbol-passive {
+      display: none;
+    }
+
+    .dropdown {
+      display: block;
+      max-height: 0;
+      padding: 0 0.38rem;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-10px) scaleY(0.95);
+      transform-origin: top;
+
+      transition:
+        max-height 400ms ease,
+        opacity 250ms ease,
+        transform 400ms ease;
+    }
+    .dropdown.open {
+      max-height: 500px; /* larger than the content's actual height */
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
     }
 
     p.quick-info-row {
@@ -204,6 +253,14 @@
       const tempEl = document.getElementById('temperature')
       tempEl.innerHTML = await getLocalTemperature()
       tempEl.classList.remove('hidden')
+
+      const weatherDropdownToggleEl = document.getElementById('weather-dropdown-toggle')
+      weatherDropdownToggleEl.addEventListener('click', (ev) => {
+        ev.preventDefault() // cancel href
+        const weatherDropdownEl = document.getElementById('weather-dropdown')
+        weatherDropdownEl.classList.toggle('open')
+        weatherDropdownToggleEl.classList.toggle('dropdown-active')
+      })
     })
   </script>
 </head>
@@ -217,7 +274,12 @@
       <span id="temperature" class="temperature hidden"></span>
     </p>
     <p>
-      <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste Letku</a><br>
+      <a id="weather-dropdown-toggle" class="dropdown-toggle"><span class="symbol symbol-active"> ▲</span><span class="symbol symbol-passive"> ▽</span><s>
+      <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste Letku </a><br>
+      <span id="weather-dropdown" class="dropdown">
+        <a class="button" href="https://www.ilmatieteenlaitos.fi/saa/tammela/liesj%C3%A4rven%20kansallispuisto">🌤️ Sääennuste Kansallispuisto</a><br>
+        <a class="button" href="https://www.ilmatieteenlaitos.fi/saa/somero/salkola">🌤️ Sääennuste Salkola</a><br>
+      </span>
       <a class="button" href="https://testbed.fmi.fi/?imgtype=radar&amp;t=5&amp;n=15">🌧️ Sadetutka</a><br>
       <a class="button" href="https://wwwi2.ymparisto.fi/i2/35/l359821001y/wqfi.html">⚓️ Liesjärven vedenkorkeus</a><br>
       <a class="button" href="http://ilmatieteenlaitos.fi/avaruussaa">🛰️ Avaruussää</a><br>
@@ -244,8 +306,8 @@
       <a class="button" href="https://www.kodinpaikka.fi/tietoa-asuinalueista/letku/">🐂 Letkun kylä</a>
     </p>
     <p class="footnote">
-      Säätiedot <a href="https://www.ilmatieteenlaitos.fi/saa/tammela/liesj%C3%A4rven%20kansallispuisto">Ilmatieteen laitos</a><br>
-      Sivu päivitetty 15.9.2026 <a href="https://www.akselipalen.com">A.Palén</a><br>
+      Säätiedot <a href="https://www.ilmatieteenlaitos.fi/saa/jokioinen">Ilmatieteen laitos</a><br>
+      Sivu päivitetty 16.9.2026 <a href="https://www.akselipalen.com">A.Palén</a><br>
     </p>
   </div>
 </body>
