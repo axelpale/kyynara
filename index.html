@@ -72,12 +72,24 @@
       height: 0;
       line-height: 0;
       text-align: right;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
       user-select: none;
+      touch-action: none;
       cursor: pointer;
+      background: transparent;
+      color: #0060c0;
+    }
+    .dropdown-toggle:hover, .dropdown-toggle:active {
+      background: transparent;
+      color: #0060c0;
     }
     .dropdown-toggle .symbol {
-      color: #0060c0;
       padding: 1rem;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
     }
     .dropdown-toggle.dropdown-active .symbol {
     }
@@ -274,7 +286,7 @@
       <span id="temperature" class="temperature hidden"></span>
     </p>
     <p>
-      <a id="weather-dropdown-toggle" class="dropdown-toggle"><span class="symbol symbol-active"> ▲</span><span class="symbol symbol-passive"> ▽</span><s>
+      <div id="weather-dropdown-toggle" class="dropdown-toggle"><span class="symbol symbol-active"> ▲</span><span class="symbol symbol-passive"> ▽</span></div>
       <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste Letku </a><br>
       <span id="weather-dropdown" class="dropdown">
         <a class="button" href="https://www.ilmatieteenlaitos.fi/saa/tammela/liesj%C3%A4rven%20kansallispuisto">🌤️ Sääennuste Kansallispuisto</a><br>
