@@ -106,6 +106,7 @@
     .dropdown {
       display: block;
       max-height: 0;
+      max-width: 800px;
       padding: 0 0.38rem;
       overflow: hidden;
       opacity: 0;
@@ -121,6 +122,12 @@
       max-height: 500px; /* larger than the content's actual height */
       opacity: 1;
       transform: translateY(0) scaleY(1);
+    }
+    .dropdown .button {
+      max-width: 790px;
+    }
+    .dropdown .button:last-child {
+      margin-bottom: 0.62rem;
     }
 
     p.quick-info-row {
@@ -290,7 +297,7 @@
       <a class="button" href="https://ilmatieteenlaitos.fi/saa/tammela/letku">🌤️ Sääennuste Letku </a><br>
       <span id="weather-dropdown" class="dropdown">
         <a class="button" href="https://www.ilmatieteenlaitos.fi/saa/tammela/liesj%C3%A4rven%20kansallispuisto">🌤️ Sääennuste Kansallispuisto</a><br>
-        <a class="button" href="https://www.ilmatieteenlaitos.fi/saa/somero/salkola">🌤️ Sääennuste Salkola</a><br>
+        <a class="button" href="https://www.ilmatieteenlaitos.fi/saa/somero/salkola">🌤️ Sääennuste Salkola</a>
       </span>
       <a class="button" href="https://testbed.fmi.fi/?imgtype=radar&amp;t=5&amp;n=15">🌧️ Sadetutka</a><br>
       <a class="button" href="https://wwwi2.ymparisto.fi/i2/35/l359821001y/wqfi.html">⚓️ Liesjärven vedenkorkeus</a><br>
